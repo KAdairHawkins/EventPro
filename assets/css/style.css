@@ -50,3 +50,11 @@
 #catch-phrase {
 	color: white;
 }
+
+
+
+	#calendar {
+		margin: 0 auto;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
