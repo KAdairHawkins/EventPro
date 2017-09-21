@@ -12,13 +12,25 @@
 			 margin-bottom: 0px;
 }
 
-.signInForm {
-	background-color: brown;
+
+#text-center {
+
+	color: white;
 }
+/*
+
+.signInForm {
+	background: url('../images/blurryPic.jpg');
+}
+
+*/
+
+/* 
 
 #events {
 	display: none;
 }
+*/
 
 .card {
 	height: 300px;
@@ -38,3 +50,11 @@
 #catch-phrase {
 	color: white;
 }
+
+
+
+	#calendar {
+		margin: 0 auto;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
