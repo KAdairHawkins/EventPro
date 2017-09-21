@@ -12,13 +12,25 @@
 			 margin-bottom: 0px;
 }
 
-.signInForm {
-	background-color: brown;
+
+#text-center {
+
+	color: white;
 }
+/*
+
+.signInForm {
+	background: url('../images/blurryPic.jpg');
+}
+
+*/
+
+/* 
 
 #events {
 	display: none;
 }
+*/
 
 .card {
 	height: 300px;
