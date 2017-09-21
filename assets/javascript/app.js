@@ -1,6 +1,5 @@
-var map = null;
+ var map = null;
     var geocoder = null;
-    var tripName;
     var infowindow;
     var radiusMiles;
     var radiusMeters;
@@ -9,87 +8,17 @@ var map = null;
     var startDate;
     var endDate;
     var tripLatLng;
-    var locationAddress;
-    var dateRangeEventful;
-
 
 function variableSet() {
-        tripName = $('#trip-name-input').val().trim();
         radiusMiles = $('#radius-input').val().trim();
         radiusMeters = radiusMiles*1600;
         startDate = $('#start-date-input').val().trim();
-        // endDate = $('#end-date-input').val().trim();
+        endDate = $('#end-date-input').val().trim();
         locationAddress = $('#destination-input').val().trim();
-        // dateRangeEventful = "" + startDate + "00" + "-" + endDate+ "00";
-        console.log(tripName);
-        console.log(locationAddress);
         console.log(radiusMiles);
         console.log(radiusMeters);
         console.log(startDate);
-        //console.log(endDate);
-
-/* 
-
-        // google Firebase database
-// 
-
-        var config = {
-            apiKey: "AIzaSyCG_tJYx0prvIF8juqH03Imu9xNVxIdTFM",
-            authDomain: "my-first-firebase-test-cb84c.firebaseapp.com",
-            databaseURL: "https://my-first-firebase-test-cb84c.firebaseio.com",
-            projectId: "my-first-firebase-test-cb84c",
-            storageBucket: "my-first-firebase-test-cb84c.appspot.com",
-            messagingSenderId: "749367150277"
-        };
-
-        firebase.initializeApp(config);
-        var database = firebase.database();
-
-  
-
-   var tripName = "";
-    var destination = "";
-    var startDate = "";
-    var endDate = "";
-    var searchRadius = 0;
-
-      $("#add-event-btn").on("click", function() {
-
-  
-  tripName = $('#trip-name-input').val().trim();
-  destination = $('#destination-input').val().trim();
-  startDate = $('#start-date-input').val().trim();
-  endDate = $('#end-date-input').val().trim();
-  searchRadius = $('#radius-input').val().trim();
-
-
-        database.ref().push({
-        tripName:  tripName,
-        destination: locationAddress,
-        startDate: startDate,
-        // endDate: endDate,
-        radiusMiles: radiusMiles,
-        radiusMeters: radiusMeters,
-    });
-
-return false;
-});
-
-
-
-database.ref().on("child_added", function(snapshot) {
-console.log(snapshot.val());
-
-
-   tripName = snapshot.val().tripName;
-   destination = snapshot.val().destination;
-   startDate = snapshot.val().startDate;
-   // endDate = snapshot.val().endDate;
-   searchRadius = snapshot.val().searchRadius;
-
-}); */
-
-
+        console.log(endDate);
 };;
 // Google Maps API
 
@@ -131,8 +60,7 @@ console.log(snapshot.val());
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
-          // location: locationAddress,
-          location: {lat: 32.84561389, lng: -96.78309444},
+          location: {lat: tripLat, lng: tripLng},
           radius:  1000,
           type: ['restaurant', 'amusement_park', 'art_gallery', 'bar', 'cafe', 'zoo', 'museum', ]
         }, callback);
@@ -170,27 +98,63 @@ console.log(snapshot.val());
         });
       }
 
+// google Firebase database
+/*
+  var config = {
+    apiKey: "AIzaSyCG_tJYx0prvIF8juqH03Imu9xNVxIdTFM",
+    authDomain: "my-first-firebase-test-cb84c.firebaseapp.com",
+    databaseURL: "https://my-first-firebase-test-cb84c.firebaseio.com",
+    projectId: "my-first-firebase-test-cb84c",
+    storageBucket: "my-first-firebase-test-cb84c.appspot.com",
+    messagingSenderId: "749367150277"
+  };
+
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+
+    var tripName = "";
+    var destination = "";
+    var startDate = "";
+    var endDate = "";
+    var searchRadius = 0;
+
+$("#add-event-btn").on("click", function() {
+
+  tripName = $('#trip-name-input').val().trim();
+  destination = $('#destination-input').val().trim();
+  startDate = $('#start-date-input').val().trim();
+  endDate = $('#end-date-input').val().trim();
+  searchRadius = $('#radius-input').val().trim();
+
+  database.ref().push({
+    tripName:  tripName,
+    destination: destination,
+    startDate: startDate,
+    endDate: endDate,
+    searchRadius: searchRadius
+});
+
+return false;
+});
 
 
+database.ref().on("child_added", function(snapshot) {
+console.log(snapshot.val());
 
 
+   tripName = snapshot.val().tripName;
+   destination = snapshot.val().destination;
+   startDate = snapshot.val().startDate;
+   endDate = snapshot.val().endDate;
+   searchRadius = snapshot.val().searchRadius;
 
-/* commented out HTML
+});
 
-function eventTitles(item, index) {
-  $('#eventCardTitle').innerHTML(item.title);
-  // $('#testEventful').append(item.description);
-  $('#eventCardDate').innerHTML(item.start_time);
-  // $('#testEventful').append(item.stop_time);
-  $('#eventCardAddress').innerHTML(item.venue_address);
-  $('#eventCardURL').innerHTML(item.url);
-
-
-  console.log(item);
-}
 
 */
 
+// google places API language below
 
 function eventTitles(item, index) {
   $('#testEventful').append(item.title);
@@ -203,9 +167,6 @@ function eventTitles(item, index) {
 
   console.log(item);
 }
-
-
-
 tripLatLng = "" + tripLat +", "+ tripLng;
 function eventfulSearch()
 
@@ -219,12 +180,9 @@ function eventfulSearch()
 
       location: tripLatLng,
 
-     //commented out the tripLatLong for now
-      // location: tripLatLng,
+      within: 1,
 
-      within: 10,
-
-      "date": "2017092200-2017100200",
+      "date": "2017092100-2017092900",
 
       page_size: 10,
 
