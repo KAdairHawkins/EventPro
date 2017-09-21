@@ -1,0 +1,40 @@
+.wrapper {
+	width: 95%;
+	margin-left: 25px;
+}
+
+.jumbotron {
+       background: url('../images/blurryPic.jpg') no-repeat center center fixed;
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       -o-background-size: cover;
+       background-size: cover;
+			 margin-bottom: 0px;
+}
+
+.signInForm {
+	background-color: brown;
+}
+
+#events {
+	display: none;
+}
+
+.card {
+	height: 300px;
+	width: 400px;
+}
+
+.inner-card {
+	height: 300px;
+	width: 150px;
+	float: left;
+}
+
+#title {
+	color: white;
+}
+
+#catch-phrase {
+	color: white;
+}
